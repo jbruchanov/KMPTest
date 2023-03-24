@@ -3,7 +3,7 @@ plugins {
     kotlin("plugin.serialization") version "1.8.10"
     id("com.android.library")
 
-    id("com.google.devtools.ksp") version "1.8.0-1.0.9"
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
     id("de.jensklingenberg.ktorfit") version "1.0.0"
 }
 
@@ -59,7 +59,11 @@ kotlin {
             }
         }
 
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+            }
+        }
         val androidUnitTest by getting
         val jvmMain by getting
         val jvmTest by getting
@@ -71,6 +75,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
