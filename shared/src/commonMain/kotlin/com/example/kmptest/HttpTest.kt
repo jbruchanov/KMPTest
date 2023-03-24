@@ -10,9 +10,12 @@ import io.ktor.client.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.logging.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -43,7 +46,7 @@ fun testKtorFit() {
                         println("HTTP Client:$message")
                     }
                 }
-                level = LogLevel.ALL
+                //level = LogLevel.ALL
             }
         })
         responseConverter(FlowResponseConverter(), CallResponseConverter())
@@ -51,12 +54,17 @@ fun testKtorFit() {
 
     val sampleApi = ktorfit.create<SampleApi>()
 
-    runBlocking {
-        val personJson = sampleApi.getPersonByAsText()
-        println(personJson)
-        val person1 = sampleApi.getPersonAsDTO()
-        println(person1)
-        val person2 = sampleApi.getPersonAsDTO(123)
-        println(person2)
+    runBlocking(Dispatchers.Default) {
+        val client = HttpClient()
+        val response = client.get("https://www.pavelcountdown.cz/").bodyAsText()
+        println(response)
+        //this is freezing on iOS for some reason, might be http related
+
+    //        val personJson = sampleApi.getPersonByAsText()
+//        println(personJson)
+//        val person1 = sampleApi.getPersonAsDTO()
+//        println(person1)
+//        val person2 = sampleApi.getPersonAsDTO(123)
+//        println(person2)
     }
 }
