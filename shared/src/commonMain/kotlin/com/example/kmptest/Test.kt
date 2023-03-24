@@ -6,4 +6,5 @@ fun testAll() {
     dateTimeTest()
     coroutinesTest()
     koinTest()
+    testKtorFit()
 }
