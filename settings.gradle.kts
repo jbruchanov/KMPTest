@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "KMPTest"
 include(":androidApp")
+include(":jvmApp")
 include(":shared")

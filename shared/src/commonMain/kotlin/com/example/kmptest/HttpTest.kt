@@ -15,6 +15,7 @@ import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.logging.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 
 interface SampleApi {
@@ -50,7 +51,7 @@ fun testKtorFit() {
 
     val sampleApi = ktorfit.create<SampleApi>()
 
-    GlobalScope.launch {
+    runBlocking {
         val personJson = sampleApi.getPersonByAsText()
         println(personJson)
         val person1 = sampleApi.getPersonAsDTO()

@@ -11,12 +11,17 @@ val ktorVersion = "2.2.4"
 val ktorfitVersion = "1.0.1"
 
 kotlin {
+
     android {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"
             }
         }
+    }
+
+    jvm {
+        //withJava()
     }
 
     listOf(
@@ -53,8 +58,11 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+
         val androidMain by getting
         val androidUnitTest by getting
+        val jvmMain by getting
+        val jvmTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -87,6 +95,7 @@ android {
 
 dependencies {
     add("kspCommonMainMetadata", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
+    add("kspJvm", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
     add("kspAndroid", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
     add("kspIosX64", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
     add("kspIosSimulatorArm64", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
