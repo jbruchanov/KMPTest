@@ -38,6 +38,12 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+                //kotlinx-xml
+                implementation("io.github.pdvrieze.xmlutil:core:0.85.0")
+                implementation("io.github.pdvrieze.xmlutil:serialization:0.85.0")
+
+
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
                 implementation("io.insert-koin:koin-core:3.2.0")
