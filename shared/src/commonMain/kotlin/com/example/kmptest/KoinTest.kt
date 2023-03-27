@@ -1,6 +1,5 @@
 package com.example.kmptest
 
-import org.koin.core.component.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.koin.mp.KoinPlatformTools
